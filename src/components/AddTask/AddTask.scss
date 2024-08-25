@@ -1,0 +1,103 @@
+@mixin desktop {
+    @media screen and (min-width: 1221px) {
+        @content;
+    }
+}
+
+@mixin laptop {
+    @media screen and (min-width: 993px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media screen and (min-width: 641px) {
+        @content;
+    }
+}
+
+@mixin phone {
+    @media screen and (min-width: 0px) {
+        @content;
+    }
+}
+
+@include phone() {
+    .addTask {
+        width: 343px;
+        height: 210px;
+        background-color: #fff;
+        border-radius: 32px;
+        padding: 24px 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    
+        .addTask__title {
+            font-family: PT_SansBold;
+            font-size: 18px; 
+        }
+    
+        .addTask__input {
+            width: 100%;
+            height: 48px;
+            font-family: PT_SansRegular;
+            font-size: 14px;
+            border: 1px solid #EAEAEA;
+            border-radius: 50px;
+            padding: 0px 46px 0px 16px;
+        }
+    
+        .addTask__button {
+            font-family: PT_SansBold;
+            letter-spacing: 0.7px;
+            font-size: 14px;
+            border-radius: 50px;
+            height: 40px;
+            width: 100%;
+            color: #fff;
+            background-color: #FF6600;
+        }
+        .addTask__button i {
+            display: none;
+        }
+    }
+}
+
+@include tablet() {
+    .addTask {
+        width: 640px;
+        height: 178px;
+
+        padding: 40px 24px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    
+        .addTask__title {
+            grid-area: 1 / 1 / 2 / 3;
+        }
+    
+        .addTask__input {
+            width: 532px;
+    grid-area: 2 / 2 / 3 / 3;
+        }
+        .addTask__button {
+            border-radius: 50%;
+            height: 44px;
+            width: 44px;
+
+            grid-area: 2 / 1 / 3 / 2;
+        }
+        .addTask__button span {
+            display: none;
+        }
+        .addTask__button i {
+            display: inline;
+        }
+        svg {
+            margin-top: 4px;
+        }
+
+    }
+}

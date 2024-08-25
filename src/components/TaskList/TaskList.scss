@@ -1,0 +1,50 @@
+@mixin desktop {
+    @media screen and (min-width: 1221px) {
+        @content;
+    }
+}
+
+@mixin laptop {
+    @media screen and (min-width: 993px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media screen and (min-width: 641px) {
+        @content;
+    }
+}
+
+@mixin phone {
+    @media screen and (min-width: 0px) {
+        @content;
+    }
+}
+
+@include phone {
+    .taskList__titles {
+        display: flex;
+        justify-content: space-between;
+        font-family: Montserrat_SemiBold;
+        font-size: 20px;
+        margin: 32px 0px;
+    }
+    .taskList__titles-status {
+        display: none;
+    }
+}
+
+@include tablet {
+    .taskList__titles {
+        margin: 0px 16px 0 0;
+    }
+    .taskList {
+        background-color: #fff;
+        padding: 40px 40px;
+        border-radius: 32px;
+    }
+    .taskList__titles-status {
+        display: inline;
+    }
+}
