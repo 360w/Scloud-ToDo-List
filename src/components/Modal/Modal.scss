@@ -1,0 +1,97 @@
+.Modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.overlay {
+  width: 100%;
+  min-height: 100vh;
+  background: rgba(0 0 0 / 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal_content {
+  position: relative;
+  padding: 50px;
+  border-radius: 16px;
+  background-color: #EFEFEF;
+  max-width: 788px;
+  font-family: montserratRegular;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 100px 0 100px 0;
+}
+
+.opened {
+  pointer-events: auto;
+  opacity: 1;
+  z-index: 10;
+  animation-name: appear;
+  animation-duration: 500ms;
+  overflow-y:auto; 
+  
+}
+
+.closeBtn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.modal_btns {
+  margin-top: 20px;
+  display: flex;
+  gap: 16px;
+}
+
+.Btn__openChat {
+  width: 180px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: #FF4C4B;
+  color: #fff;
+  font-size: 16px;
+  float: right;
+  font-family: montserratRegular;
+}
+
+.Btn__edit {
+  width: 180px;
+  height: 40px;
+  border: 1px solid #FF4C4B;
+  color: #FF4C4B;
+  border-radius: 8px;
+  font-family: montserratRegular;
+  text-align: center;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(-150px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
