@@ -17,7 +17,7 @@ const TaskItem = ({ task }: TaskItemProps) => {
         <div className='taskItem'>
             <p className='taskItem__taskText'>{task.taskName}</p>
             <button className='taskItem__statusBtn' onClick={() => setIsOpen(true)}>{task.status}</button>
-            <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}><div className='modal'>234234</div></Modal>
+            <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}><div className='Modal'></div></Modal>
         </div>
 
     );

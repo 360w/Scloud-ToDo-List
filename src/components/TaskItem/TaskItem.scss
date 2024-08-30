@@ -59,7 +59,7 @@
 
 @include tablet() {
     .taskItem {
-        // display: inline;
+        display: inline;
         min-height: 34px;
         max-height: 34px;
         padding: 10px 0px;

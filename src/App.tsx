@@ -14,6 +14,7 @@ const App = () => {
   const [task, setTask] = useState<string>("");
   const [todoList, setTodoList] = useState<ITask[]>([]);
   const [statusCounter, setStatusCounter] = useState<number>(0);
+  const [visibleItems, setVisibleItems] = useState(5);
 
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -40,7 +41,15 @@ const App = () => {
     return countMap;
   };
   const duplicatesCount = countDuplicates(todoList);
-  console.log(duplicatesCount)
+  console.log(duplicatesCount);
+
+  const showMoreItems = () => {
+    if (visibleItems === 5) {
+      setVisibleItems(todoList.length);
+    } else {
+      setVisibleItems(5);
+    }
+  };
 
   return (
     <div className="App">
@@ -102,12 +111,20 @@ const App = () => {
               <h2 className='taskList__titles-tasks'>Задачи</h2>
               <h2 className='taskList__titles-status'>Статус</h2>
             </div>
-            {todoList.map((task: ITask, key: number) => {
-              return <TaskItem key={key} task={task} />;
-            })}
+            <div className='taskList__container'>
+              {todoList.slice(0, visibleItems).reverse().map((task: ITask, key: number) => {
+                return <TaskItem key={key} task={task} />;
+              })}
+            </div>
+            <button className='toggleListButton' onClick={showMoreItems}>{visibleItems === 5 ? <div>Показать еще <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 7.5C5.74414 7.5 5.48828 7.40234 5.29297 7.20703L0.292973 2.20703C-0.0976575 1.8164 -0.0976575 1.18359 0.292973 0.792973C0.683603 0.402353 1.31641 0.402342 1.70703 0.792973L6 5.08594L10.293 0.792973C10.6836 0.402342 11.3164 0.402342 11.707 0.792973C12.0977 1.1836 12.0977 1.81641 11.707 2.20703L6.70703 7.20703C6.51172 7.40235 6.25586 7.5 6 7.5Z" fill="#FF6600" />
+            </svg></div> : <div>Свернуть <svg className='rotate180' width="12" height="8" viewBox=" 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 7.5C5.74414 7.5 5.48828 7.40234 5.29297 7.20703L0.292973 2.20703C-0.0976575 1.8164 -0.0976575 1.18359 0.292973 0.792973C0.683603 0.402353 1.31641 0.402342 1.70703 0.792973L6 5.08594L10.293 0.792973C10.6836 0.402342 11.3164 0.402342 11.707 0.792973C12.0977 1.1836 12.0977 1.81641 11.707 2.20703L6.70703 7.20703C6.51172 7.40235 6.25586 7.5 6 7.5Z" fill="#FF6600" />
+            </svg></div>}
+            </button>
           </div>
         </div>
-        <div className="bottomBlock">
+        {/* <div className="bottomBlock">
           <div className='taskBoard'>
             <div className='taskBoard__container'>
               <h2 className='taskBoard__title'>Доска задач</h2>
@@ -127,10 +144,10 @@ const App = () => {
               </form>
             </div>
           </div>
-        </div>
+        </div> */}
 
       </div>
-      <footer />
+      <footer className='footer' />
     </div >
   );
 };

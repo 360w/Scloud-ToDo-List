@@ -1,3 +1,5 @@
+@import url('./fonts/fonts.scss');
+
 @mixin desktop {
     @media screen and (min-width: 1221px) {
         @content;
@@ -167,6 +169,25 @@
     .taskList {
         width: 343px;
     }
+    .toggleListButton {
+        width: 193px;
+        height: 48px;
+        font-family: PT_SansBold;
+        font-size: 14px;
+        color: rgba(255, 102, 0, 1);
+        border-radius: 50px;
+        border: 2px solid rgba(255, 102, 0, 1);
+        background-color: #fff;
+        div {
+            display: flex;
+        align-items: center;
+        justify-content: center;
+            gap: 12px;
+        }
+        .rotate180 {
+            transform: rotate(180deg);
+        }
+    }
 }
 
 @include tablet() {
@@ -238,22 +259,33 @@ grid-area: 2 / 2 / 3 / 3;
 }
 
 @include laptop() {
+
+    .App {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+
+    html, body { 
+        height: 100%;
+        flex: 1;
+    }
     .topBlock {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
-    }
-    .bottomBlock {
-        margin-top: 88px;
-        display: block;
-        background-color: #fff;
+        height: 100%;
+        padding: 0px 0px 350px 0px;
     }
     .addTask {
         grid-area: 1 / 2 / 2 / 3;;
         width: 588px;
         height: 184px;
     }
-
+    .toggleListButton {
+        position: relative;
+top: 120px;
+    }
 
     .addTask__input {
         max-width: 478px;
@@ -267,13 +299,9 @@ grid-area: 2 / 2 / 3 / 3;
     .taskBoard {
         display: block;
         background-color: #fff;
-        padding: 32px 82px;
-        max-width: none;
-        min-width: calc(104.55vw - 105px);
-        z-index: 99;
+        padding: 32px 38vh;
         .taskBoard__container {
             width: 1200px;
-            margin: 0 auto;
         }
         .taskBoard__title {
             font-family: Montserrat_SemiBold;
@@ -290,6 +318,7 @@ grid-area: 2 / 2 / 3 / 3;
             height: 280px;
             background-color: rgba(234, 234, 234, 0.5);
             border-radius: 24px;
+        
         }
         .statuses__open, .statuses__atWork, .statuses__closed {
             width: 100%;
@@ -314,16 +343,21 @@ grid-area: 2 / 2 / 3 / 3;
         background-color: #fff;
         padding: 40px 40px;
         border-radius: 32px;
-        min-height: 400px;
-        width: 1220px;
+        min-height: 100px;
+        width: 1208px;
         grid-area: 2 / 1 / 3 / 3;
-        position: relative;
-        bottom: 200px;
+        position: absolute;
+        top: 370px;
+        margin-bottom: 250px;
+.taskList__container {
+    display: flex;
+    flex-direction: column;
+}
     }
     .taskList__titles-status {
         display: inline;
     }
-    .topBlock {
-        
+    .footer {
+        display: none;
     }
 }
