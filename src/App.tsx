@@ -13,6 +13,8 @@ const App = () => {
   const [status, setStatus] = useState<string>("Открыто");
   const [task, setTask] = useState<string>("");
   const [todoList, setTodoList] = useState<ITask[]>([]);
+  const [statusCounter, setStatusCounter] = useState<number>(0);
+
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault()
@@ -21,15 +23,24 @@ const App = () => {
 
 
   const addTask = (): void => {
-    const newTask = { taskName: task, status: status }
+    const newTask = { taskName: task, status: status, statusCounter: statusCounter }
     setTodoList([...todoList, newTask]);
     setTask('')
+    setStatusCounter(statusCounter + 1)
     setStatus('Открыто')
   }
 
+  const countDuplicates = (arr: ITask[]) => {
+    const countMap: Record<string, number> = {};
 
+    arr.forEach(todoList => {
+      countMap[todoList.statusCounter] = (countMap[todoList.status] || 0) + 1;
+    });
 
-
+    return countMap;
+  };
+  const duplicatesCount = countDuplicates(todoList);
+  console.log(duplicatesCount)
 
   return (
     <div className="App">
@@ -45,7 +56,7 @@ const App = () => {
                   <path d="M12.167 16.833C11.6143 16.833 11.167 16.3853 11.167 15.833V12.1665C11.167 11.6143 11.6143 11.1665 12.167 11.1665C12.7197 11.1665 13.167 11.6143 13.167 12.1665V15.833C13.167 16.3853 12.7197 16.833 12.167 16.833Z" fill="#26A1DE" />
                   <path d="M12.1768 9.5C11.624 9.5 11.1719 9.05225 11.1719 8.5C11.1719 7.94775 11.6143 7.5 12.167 7.5H12.1768C12.7295 7.5 13.1768 7.94775 13.1768 8.5C13.1768 9.05225 12.7295 9.5 12.1768 9.5Z" fill="#26A1DE" />
                 </svg>
-                <p className='tasksContainer__text'>Открыто - </p>
+                <p className='tasksContainer__text'>Открыто - {statusCounter}</p>
               </div>
               <div className='tasksContainer__atWork task'>
                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -53,7 +64,7 @@ const App = () => {
                   <path d="M12.667 16.833C12.1143 16.833 11.667 16.3853 11.667 15.833V12.1665C11.667 11.6143 12.1143 11.1665 12.667 11.1665C13.2197 11.1665 13.667 11.6143 13.667 12.1665V15.833C13.667 16.3853 13.2197 16.833 12.667 16.833Z" fill="#FF6600" />
                   <path d="M12.6768 9.5C12.124 9.5 11.6719 9.05225 11.6719 8.5C11.6719 7.94775 12.1143 7.5 12.667 7.5H12.6768C13.2295 7.5 13.6768 7.94775 13.6768 8.5C13.6768 9.05225 13.2295 9.5 12.6768 9.5Z" fill="#FF6600" />
                 </svg>
-                <p className='tasksContainer__text'>В работе - </p>
+                <p className='tasksContainer__text'>В работе - 0</p>
               </div>
               <div className='tasksContainer__isClosed task'>
                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,7 +72,7 @@ const App = () => {
                   <path d="M12.667 16.833C12.1143 16.833 11.667 16.3853 11.667 15.833V12.1665C11.667 11.6143 12.1143 11.1665 12.667 11.1665C13.2197 11.1665 13.667 11.6143 13.667 12.1665V15.833C13.667 16.3853 13.2197 16.833 12.667 16.833Z" fill="#4DB849" />
                   <path d="M12.6768 9.5C12.124 9.5 11.6719 9.05225 11.6719 8.5C11.6719 7.94775 12.1143 7.5 12.667 7.5H12.6768C13.2295 7.5 13.6768 7.94775 13.6768 8.5C13.6768 9.05225 13.2295 9.5 12.6768 9.5Z" fill="#4DB849" />
                 </svg>
-                <p className='tasksContainer__text'>Закрыто - </p>
+                <p className='tasksContainer__text'>Закрыто - 0</p>
               </div>
             </div>
           </div>
